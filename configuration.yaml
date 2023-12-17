@@ -6,12 +6,6 @@ default_config:
 frontend:
   themes: !include_dir_merge_named themes
 
-# Text to speech
-tts:
-  - platform: google_translate
-
-websocket_api:
-
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
