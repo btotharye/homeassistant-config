@@ -9,3 +9,7 @@ frontend:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+# Ecobee thermostat setup
+ecobee:
+  api_key: !secret ecobee_api_key
