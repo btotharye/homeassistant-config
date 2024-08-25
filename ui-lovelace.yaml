@@ -1,0 +1,48 @@
+title: Hopkins Home
+views:
+  - icon: mdi:home-assistant
+    id: home
+    title: Home
+    cards:
+      - type: entities
+        title: Lights
+        state_color: true
+        entities:
+          - entity: light.garage
+          - entity: light.garage_outside_left
+          - entity: light.garage_outside_right
+          - entity: light.sheena_bedroom
+          - entity: light.brian_bedroom
+          - entity: light.bedroom
+          - entity: light.bonus_room
+          - entity: light.bonus_room_1
+          - entity: light.bonus_room_2
+      - type: thermostat
+        entity: climate.upstairs
+      - type: thermostat
+        entity: climate.downstairs
+      - title: Energy distribution today
+        type: energy-distribution
+        link_dashboard: true
+      - type: entities
+        title: Information
+        show_header_toggle: false
+        entities:
+          - sensor.snake_room_temperature
+          - sensor.snake_room_humidity
+      - type: weather-forecast
+        show_current: true
+        show_forecast: true
+        entity: weather.home
+        forecast_type: daily
+        secondary_info_attribute: precipitation
+      - type: entities
+        title: Alarm System
+        show_header_toggle: false
+        entities:
+          - lock.front_door_lock
+          - binary_sensor.front_door_lock_battery
+          - binary_sensor.front_door_entry_door
+          - binary_sensor.back_door_entry_door
+          - binary_sensor.garage_entry_door
+          - alarm_control_panel.alarm_control_panel
