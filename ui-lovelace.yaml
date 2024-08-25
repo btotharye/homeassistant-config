@@ -46,3 +46,5 @@ views:
           - binary_sensor.back_door_entry_door
           - binary_sensor.garage_entry_door
           - alarm_control_panel.alarm_control_panel
+      - type: media-control
+        entity: media_player.living_room_tv_2
