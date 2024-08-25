@@ -1,0 +1,17 @@
+#################################################################
+#                                                               #
+#                            Zones                              #
+#                                                               #
+#################################################################
+
+- name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  radius: 50
+  icon: mdi:home
+
+- name: Brian Work
+  latitude: !secret brian_work_latitude
+  longitude: !secret brian_work_longitude
+  radius: 75
+  icon: mdi:briefcase
