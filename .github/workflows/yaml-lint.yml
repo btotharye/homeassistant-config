@@ -25,7 +25,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install yamllint
 
-      - name: Run yamllint and HA config check
+      - name: Create dummy secrets.yaml for CI
+        run: |
+          if [ ! -f secrets.yaml ]; then
+            cat > secrets.yaml << 'EOF'
+            home_latitude: 0
+            home_longitude: 0
+            brian_work_latitude: 0
+            brian_work_longtitude: 0
+            # add any other secrets you reference here with fake values
+            EOF
+          fi
+
+      - name: Run lint + HA config check
         run: |
           chmod +x check.sh
           ./check.sh .
+
