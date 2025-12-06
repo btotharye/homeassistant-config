@@ -1,0 +1,44 @@
+name: Config Lint & HA Check
+
+on:
+  push:
+    paths:
+      - '**.yaml'
+      - '**.yml'
+      - 'check.sh'
+  pull_request:
+    paths:
+      - '**.yaml'
+      - '**.yml'
+      - 'check.sh'
+
+jobs:
+  lint-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install yamllint
+        run: |
+          python -m pip install --upgrade pip
+          pip install yamllint
+
+      - name: Create dummy secrets.yaml for CI
+        run: |
+          if [ ! -f secrets.yaml ]; then
+            printf '%s\n' \
+              'home_latitude: 0' \
+              'home_longitude: 0' \
+              'brian_work_latitude: 0' \
+              'brian_work_longitude: 0' \
+              '# add any other secrets you reference here with fake values' \
+              > secrets.yaml
+          fi
+
+      - name: Run lint + HA config check
+        run: |
+          chmod +x check.sh
+          ./check.sh .
+

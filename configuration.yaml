@@ -1,6 +1,18 @@
-
 # Loads default set of integrations. Do not remove.
-default_config:
+homeassistant:
+  auth_providers:
+    - type: homeassistant
+
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+
+  # Name of where Homeassistant is running
+  name: Home
+  temperature_unit: F
+  time_zone: America/New_York
+  unit_system: us_customary
+
+zone: !include includes/zones.yaml
 
 # Load frontend themes from the themes folder
 frontend:
@@ -9,3 +21,6 @@ frontend:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+default_config:
+system_health:
