@@ -1,0 +1,25 @@
+# ===== Home Assistant internals (do NOT version) =====
+.homeassistant
+.storage/
+.cloud/
+tts/
+backups/
+deps/
+home-assistant_v2.db
+home-assistant_v2.db-shm
+home-assistant_v2.db-wal
+
+# Logs & misc
+*.log
+*.log.*
+*.pid
+*.ha_run.lock
+
+# Secrets
+secrets.yaml
+.secrets.yaml
+
+# Editor junk
+.vscode/
+.idea/
+.DS_Store
