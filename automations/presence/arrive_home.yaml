@@ -17,6 +17,8 @@
     - service: alarm_control_panel.alarm_disarm
       target:
         entity_id: alarm_control_panel.alarm_control_panel
+      data:
+        code: !secret simplisafe_pin
 
     - service: notify.mobile_app_brians_iphone
       data:
