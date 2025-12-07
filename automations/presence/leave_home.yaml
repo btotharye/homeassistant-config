@@ -8,11 +8,6 @@
       to: "not_home"
       for: "00:02:00"
 
-  condition:
-    - condition: state
-      entity_id: alarm_control_panel.alarm_control_panel
-      state: "disarmed"
-
   action:
     - service: alarm_control_panel.alarm_arm_away
       target:
