@@ -23,5 +23,12 @@ automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+notify:
+  - name: household_mobile_devices
+    platform: group
+    services:
+      - service: mobile_app_brians_iphone
+      - service: mobile_app_sheenas_iphone
+
 default_config:
 system_health:

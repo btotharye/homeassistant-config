@@ -20,12 +20,7 @@
       data:
         code: !secret simplisafe_pin
 
-    - service: notify.mobile_app_brians_iphone
-      data:
-        title: "Welcome Home"
-        message: "SimpliSafe disarmed — someone arrived home."
-
-    - service: notify.mobile_app_sheenas_iphone
+    - service: notify.household_mobile_devices
       data:
         title: "Welcome Home"
         message: "SimpliSafe disarmed — someone arrived home."
