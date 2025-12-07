@@ -33,6 +33,7 @@ jobs:
               'home_longitude: 0' \
               'brian_work_latitude: 0' \
               'brian_work_longitude: 0' \
+              'simplisafe_pin': 1234' \
               '# add any other secrets you reference here with fake values' \
               > secrets.yaml
           fi
