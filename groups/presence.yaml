@@ -1,0 +1,5 @@
+household_presence:
+  name: Household Presence
+  entities:
+    - device_tracker.iphone
+    - device_tracker.iphone_2

@@ -1,0 +1,19 @@
+- alias: "Leave Home – Arm SimpliSafe"
+  id: leave_home_arm_simplisafe
+  mode: single
+
+  trigger:
+    - platform: state
+      entity_id: group.household_presence
+      to: "not_home"
+      for: "00:02:00"
+
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm_control_panel
+      state: "disarmed"
+
+  action:
+    - service: alarm_control_panel.alarm_arm_away
+      target:
+        entity_id: alarm_control_panel.alarm_control_panel
