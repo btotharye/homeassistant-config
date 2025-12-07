@@ -1,0 +1,26 @@
+- alias: "Arrive Home – Disarm SimpliSafe"
+  id: arrive_home_disarm_simplisafe
+  mode: single
+
+  trigger:
+    - platform: state
+      entity_id: group.household_presence
+      from: "not_home"
+      to: "home"
+
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm_control_panel
+      state: "armed_away"
+
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      target:
+        entity_id: alarm_control_panel.alarm_control_panel
+      data:
+        code: !secret simplisafe_pin
+
+    - service: notify.household_mobile_devices
+      data:
+        title: "Welcome Home"
+        message: "SimpliSafe disarmed — someone arrived home."
