@@ -12,7 +12,7 @@
     - platform: state
       entity_id: binary_sensor.downstairs_bath_motion
       to: "off"
-      for: "00:02:00" # wait 2 minutes after no motion before turning off
+      for: "00:01:00" # wait 2 minutes after no motion before turning off
 
   action:
     - choose:
