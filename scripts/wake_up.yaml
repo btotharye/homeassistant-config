@@ -1,0 +1,35 @@
+wake_up_routine:
+  alias: Wake Up Routine
+  mode: single
+
+  sequence:
+    - service: script.say_on_assist
+      data:
+        message: "Good morning."
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.alarm_control_panel
+          state: "armed_home"
+        - condition: state
+          entity_id: alarm_control_panel.alarm_control_panel
+          state: "armed_away"
+
+    - service: alarm_control_panel.alarm_disarm
+      target:
+        entity_id: alarm_control_panel.alarm_control_panel
+      data:
+        code: !secret simplisafe_pin
+
+    - service: light.turn_off
+      target:
+        entity_id: light.garage
+
+    - service: switch.turn_off
+      target:
+        entity_id: switch.front_porch_switch
+
+    - service: script.say_on_assist
+      data:
+        message: "Alarm disarmed. Exterior lights are off."

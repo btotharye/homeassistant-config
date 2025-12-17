@@ -1,0 +1,16 @@
+say_on_assist:
+  alias: Say message on Assist device
+  mode: queued
+  fields:
+    message:
+      description: Message to speak
+      example: "Good night. The house is secured."
+
+  sequence:
+    - service: media_player.play_media
+      target:
+        device_id: c680880bbffa5c294fafc509b0dd8b48
+      data:
+        media:
+          media_content_id: "media-source://tts/tts.home_assistant_cloud?message={{ message | urlencode }}&language=en-US&voice=AmberNeural"
+          media_content_type: audio/mp3
