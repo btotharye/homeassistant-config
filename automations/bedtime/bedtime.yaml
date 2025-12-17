@@ -1,21 +1,22 @@
-alias: Voice - Bedtime Routine
-description: Trigger bedtime routine via voice assistant
-mode: single
+- alias: Voice - Bedtime Routine
+  description: Trigger bedtime routine via voice assistant
+  mode: single
 
-trigger:
-  - platform: conversation
-    command:
-      - "it's bedtime"
-      - "bedtime"
-      - "good night"
-      - "activate bedtime mode"
-      - "start bedtime routine"
+  trigger:
+    - platform: conversation
+      command:
+        - "it's bedtime"
+        - "its bedtime"
+        - "bedtime"
+        - "good night"
+        - "goodnight"
+        - "activate bedtime mode"
+        - "start bedtime routine"
 
-condition:
-  # Only run if you are home
-  - condition: state
-    entity_id: group.household_presence
-    state: "home"
+  condition:
+    - condition: state
+      entity_id: group.household_presence
+      state: "home"
 
-action:
-  - service: script.bedtime_routine
+  action:
+    - service: script.bedtime_routine
