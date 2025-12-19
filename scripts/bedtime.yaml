@@ -15,11 +15,10 @@ bedtime_routine:
                   entity_id: alarm_control_panel.alarm_control_panel
                   state: "armed_home"
           sequence:
-            - delay: "00:01:30"
-
             - service: alarm_control_panel.alarm_arm_home
               target:
                 entity_id: alarm_control_panel.alarm_control_panel
+
     - service: light.turn_off
       target:
         entity_id:
