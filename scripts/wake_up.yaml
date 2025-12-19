@@ -6,6 +6,8 @@ wake_up_routine:
     - service: script.say_on_assist
       data:
         message: "Good morning."
+        volume: 0.7
+        media_player: media_player.home_assistant_voice_0a7915_media_player # optional
 
     - choose:
         - conditions:
@@ -23,6 +25,7 @@ wake_up_routine:
                 entity_id: alarm_control_panel.alarm_control_panel
               data:
                 code: !secret simplisafe_pin
+
     - service: light.turn_off
       target:
         entity_id: light.garage
@@ -34,3 +37,5 @@ wake_up_routine:
     - service: script.say_on_assist
       data:
         message: "Alarm disarmed. Exterior lights are off."
+        volume: 0.7
+        media_player: media_player.home_assistant_voice_0a7915_media_player # optional

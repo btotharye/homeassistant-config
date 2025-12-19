@@ -6,6 +6,8 @@ bedtime_routine:
     - service: script.say_on_assist
       data:
         message: "Starting bedtime routine."
+        media_player: media_player.home_assistant_voice_0a7915_media_player
+        volume: 0.7
 
     - choose:
         - conditions:
@@ -38,3 +40,4 @@ bedtime_routine:
     - service: script.say_on_assist
       data:
         message: "Good night. The house is secured."
+        volume: 0.7

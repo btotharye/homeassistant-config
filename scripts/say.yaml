@@ -7,13 +7,29 @@ say_on_assist:
       example: "Good night. The house is secured."
     media_player:
       description: Media player entity_id to play the message on
-      example: media_player.assist_device
+      example: media_player.home_assistant_voice_0a7915_media_player
+    volume:
+      description: Volume level (0.0 – 1.0)
+      example: 0.45
 
   sequence:
+    - variables:
+        mp: "{{ media_player | default('media_player.home_assistant_voice_0a7915_media_player') }}"
+        vol: "{{ volume | default(0.45) }}"
+
+    # Set announcement volume
+    - service: media_player.volume_set
+      target:
+        entity_id: "{{ mp }}"
+      data:
+        volume_level: "{{ vol }}"
+
+    # Speak message
     - service: media_player.play_media
       target:
-        entity_id: "{{ media_player }}"
+        entity_id: "{{ mp }}"
       data:
         media:
-          media_content_id: "media-source://tts/tts.home_assistant_cloud?message={{ message | urlencode }}&language=en-US&voice=AmberNeural"
+          media_content_id: >-
+            media-source://tts/tts.home_assistant_cloud?message={{ message | urlencode }}&language=en-US&voice=AmberNeural
           media_content_type: audio/mp3
