@@ -1,0 +1,43 @@
+bedtime_routine:
+  alias: Bedtime Routine
+  mode: single
+
+  sequence:
+    - service: script.say_on_assist
+      data:
+        message: "Starting bedtime routine."
+        media_player: media_player.home_assistant_voice_0a7915_media_player
+        volume: 0.7
+
+    - choose:
+        - conditions:
+            - condition: not
+              conditions:
+                - condition: state
+                  entity_id: alarm_control_panel.alarm_control_panel
+                  state: "armed_home"
+          sequence:
+            - service: alarm_control_panel.alarm_arm_home
+              target:
+                entity_id: alarm_control_panel.alarm_control_panel
+
+    - service: light.turn_off
+      target:
+        entity_id:
+          - light.living_room
+          - light.bedroom
+          - light.bonus_room
+          - light.hue_essential_lamp_1
+
+    - service: light.turn_on
+      target:
+        entity_id: light.garage
+
+    - service: switch.turn_on
+      target:
+        entity_id: switch.front_porch_switch
+
+    - service: script.say_on_assist
+      data:
+        message: "Good night. The house is secured."
+        volume: 0.7

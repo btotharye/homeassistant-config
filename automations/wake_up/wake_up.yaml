@@ -1,0 +1,19 @@
+- alias: Voice - Wake Up Routine
+  description: Trigger wake up routine via voice assistant
+  mode: single
+
+  trigger:
+    - platform: conversation
+      command:
+        - "good morning"
+        - "wake up"
+        - "start my day"
+        - "disarm the alarm"
+
+  condition:
+    - condition: state
+      entity_id: group.household_presence
+      state: "home"
+
+  action:
+    - service: script.wake_up_routine
