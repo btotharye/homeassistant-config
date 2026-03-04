@@ -37,7 +37,7 @@ cards:
     entity: sensor.envoy_202210044703_battery
     min: 0
     max: 100
-        needle: true
+    needle: true
     unit: '%'
     name: Battery Level
     severity:
