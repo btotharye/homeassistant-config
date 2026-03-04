@@ -1,0 +1,110 @@
+# Energy Dashboard - Add this to your HA Lovelace configuration
+# Either paste into the UI editor or add to ui-lovelace.yaml
+
+title: Energy
+path: energy
+icon: mdi:flash
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      # Current Production & Consumption Header
+      - type: horizontal-stack
+        cards:
+          - type: custom:stat-entity-card
+            entity: sensor.envoy_202210044703_current_power_production
+            name: Solar Production
+            unit: kW
+            icon: mdi:solar-power
+            style: |
+              ha-card {
+                --primary-color: #FDB813;
+              }
+          - type: custom:stat-entity-card
+            entity: sensor.envoy_202210044703_current_power_consumption
+            name: Home Consumption
+            unit: kW
+            icon: mdi:home-lightning-bolt
+            style: |
+              ha-card {
+                --primary-color: #FF6B6B;
+              }
+          - type: custom:stat-entity-card
+            entity: sensor.envoy_202210044703_battery
+            name: Battery Level
+            unit: '%'
+            icon: mdi:battery
+            style: |
+              ha-card {
+                --primary-color: #4ECDC4;
+              }
+
+      # Daily Energy Cards
+      - type: horizontal-stack
+        cards:
+          - type: stat
+            entity: sensor.envoy_202210044703_energy_production_today
+            name: Today's Production
+            unit_of_measurement: kWh
+            icon: mdi:solar-power-box
+          - type: stat
+            entity: sensor.envoy_202210044703_energy_consumption_today
+            name: Today's Consumption
+            unit_of_measurement: kWh
+            icon: mdi:lightning-bolt
+
+      # Weekly Trend
+      - type: horizontal-stack
+        cards:
+          - type: stat
+            entity: sensor.envoy_202210044703_energy_production_last_seven_days
+            name: 7-Day Production
+            unit_of_measurement: kWh
+            icon: mdi:chart-line
+          - type: stat
+            entity: sensor.envoy_202210044703_energy_consumption_last_seven_days
+            name: 7-Day Consumption
+            unit_of_measurement: kWh
+            icon: mdi:chart-line
+
+      # Lifetime Net
+      - type: stat
+        entity: sensor.envoy_202210044703_lifetime_net_energy_production
+        name: Lifetime Net Production (Exported to Grid)
+        unit_of_measurement: MWh
+        icon: mdi:transmission-tower
+
+      # Battery Status Card
+      - type: custom:battery-state-card
+        entities:
+          - sensor.envoy_202210044703_battery
+          - sensor.envoy_202210044703_available_battery_energy
+        name: Battery State
+
+      # Graph: Production vs Consumption (requires history-stats or similar)
+      - type: history-graph
+        title: Production vs Consumption (Last 24h)
+        entities:
+          - entity: sensor.envoy_202210044703_current_power_production
+            name: Solar Production
+          - entity: sensor.envoy_202210044703_current_power_consumption
+            name: Home Consumption
+        hours_to_show: 24
+
+      # Info Card
+      - type: markdown
+        content: |
+          ## Energy Dashboard Info
+          
+          **Solar System:** Enphase Envoy 202210044703 with Encharge batteries
+          
+          **Key Metrics:**
+          - **Current Production:** Real-time solar generation
+          - **Current Consumption:** Real-time home usage
+          - **Battery:** Available energy stored
+          - **Net Production:** Total excess energy sent to grid (lifetime)
+          
+          **Tips:**
+          - Monitor daily production vs consumption to understand your energy pattern
+          - Battery level indicates stored energy for use during low-production hours
+          - Positive net production means you're exporting excess to the grid
