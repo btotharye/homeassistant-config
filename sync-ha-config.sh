@@ -26,7 +26,10 @@ git commit -m "$msg"
 
 # Push to GitHub
 echo "📤 Pushing to GitHub..."
-git push origin master
+git push origin HEAD:add-energy-dashboard
+echo ""
+echo "⚠️  Note: Your repo requires pull requests on main."
+echo "📌 Create a PR at: https://github.com/btotharye/homeassistant-config/pulls"
 
 echo "✅ Pushed to GitHub!"
 echo ""
